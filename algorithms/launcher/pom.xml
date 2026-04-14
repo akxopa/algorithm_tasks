@@ -22,7 +22,7 @@
 
         <dependency>
             <groupId>io.github.akxopa</groupId>
-            <artifactId>binarysearch</artifactId>
+            <artifactId>tasks</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>
