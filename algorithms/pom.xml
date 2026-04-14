@@ -14,7 +14,7 @@
 
     <modules>
         <module>common</module>
-        <module>binarysearch</module>
+        <module>tasks</module>
         <module>launcher</module>
     </modules>
 
