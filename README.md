@@ -1,108 +1,122 @@
-# Здесь описание проекта 
 # Algorithm Tasks
 
-### Цель проекта
-Показать свое портфолио и чему я научилась при решении задач на алгоритмы.
-Задачи взяты из CodeRun и Тренировок по алгоритмам от Яндекс 2026.
+## О проекте
+`Algorithm Tasks` - консольное Java-приложение для хранения и демонстрации решений алгоритмических задач.
 
-### Основная идея проекта
-Algorithm Tasks - консольное приложение.
+Представляю решение задач из `CodeRun`, `Yandex training` и `LeetCode`. Задачи можно запускать с дефолтными входными данными из общего меню. Проект будет постепенно расширять библиотеку решений.
 
-Пользователю дается описание кнопок
-затем выводится лист с задачами
-1: Oligopoliya
-2: Decode the string
-...
+## Цели проекта
+- показать навыки решения алгоритмических задач
+- собрать задачи из разных платформ в одном приложении
+- сделать архитектуру, которую легко расширять по мере роста количества задач
 
-0: Exit
+## Что умеет приложение
+- показывает стартовый экран
+- выводит список доступных задач
+- открывает карточку выбранной задачи
+- показывает источник, описание и примеры ввода и вывода
+- запускает решение задачи из консоли
+- возвращает пользователя обратно в меню
 
-При нажатии кнопки с задачей выводится:
-Описание задачи
-Пример входных данных 
-Пример выходных данных
+## Сценарий работы
+1. Пользователь запускает приложение.
+2. Приложение показывает список задач.
+3. Пользователь выбирает номер задачи.
+4. Приложение открывает карточку задачи.
+5. Пользователь может:
+   `s` - запустить решение
+   `m` - вернуться в меню
+   `0` - завершить приложение
 
-Пользователью предлагается:
-s: запустить решение задачи
-m: выйти в меню
-0: завершить приложение
+## Пример задачи
+### Decode the string
+Источник: `Yandex Algorithm training 2026`
+
+Условие:
+Символам `a-i` соответствуют числа `1-9`, а символам `j-z` соответствуют значения `10#-26#`.
+Нужно раскодировать строку.
 
 Пример:
-2: Decode the string
-
- Раскодируй строку
- символам a - i соответсвуют числа 1 по 9
- символам j - z соответсвуют 10# по 26#
-
+```text
 Ввод:
 32410#12326#
 
 Вывод:
 cbdjabcz
-
-Код:
-
-```
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-
-/**
- * Раскодируй строку
- * символам a - i соответсвуют числа 1 по 9
- * символам j - z соответсвуют 10# по 26#
- * 
- */
-public class Main {
-    public static void main(String[] args) throws IOException {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
-
-        String line = reader.readLine();
-
-        writer.write(service(line));
-
-        writer.newLine();
-        writer.flush();
-
-        reader.close();
-        writer.close();
-    }
-
-    static String service(String input) {
-        if (input == null) {
-            return "";
-        }
-
-        StringBuilder result = new StringBuilder();
-        int inputLength = input.length(); // размер исходной строки
-        String str = input + "**"; // добавляем звез чтобы при считывании после символов не получить исключение
-        int position = 0; // позиция
-
-        while (position < inputLength) {
-            if (str.charAt(position + 2) == '#') {
-
-                result.append(translate(str.substring(position, position + 2)));
-                position = position + 3;
-            } else {
-                result.append(translate(str.substring(position, position + 1)));
-                ++position;
-            }
-
-        }
-
-        return result.toString();
-    }
-
-    static String translate(String digitStr) {
-        int num = Integer.parseInt(digitStr);
-        char ch = (char) ('a' + num - 1);
-        return String.valueOf(ch);
-    }
-
-}
-
 ```
 
+## Архитектура
+Проект построен как модульное консольное приложение из трех основных частей:
+
+- `common` - общие контракты и модели
+- `launcher` - запуск приложения и консольное меню
+- `tasks` - конкретные реализации задач и их реестр
+
+### Схема модулей
+```text
+algorithms
+├── common
+│   ├── Task
+│   ├── TaskInfo
+│   ├── TaskRegistry
+│   └── Runner
+├── launcher
+│   ├── Main
+│   ├── Application
+│   ├── SplashScreen
+│   └── menu
+│       ├── InputHandler
+│       └── MenuPrinter
+└── tasks
+    ├── yatraining
+    │   └── YaTrainingDecodeStringTask
+    └── registry
+        └── DefaultTaskRegistry
+```
+
+### Схема взаимодействия
+```text
+Main
+  |
+  v
+Application
+  | uses
+  +--> SplashScreen
+  +--> MenuPrinter
+  +--> InputHandler
+  +--> Runner
+  |
+  v
+TaskRegistry
+  |
+  v
+Task implementations
+  |
+  v
+TaskInfo
+```
+
+### Ответственность компонентов
+- `Task` - общий интерфейс любой задачи
+- `TaskInfo` - метаданные задачи: источник, название, описание и примеры
+- `TaskRegistry` - список доступных задач и поиск задачи по номеру
+- `Runner` - запуск задачи и замер времени выполнения
+- `Application` - основной цикл приложения
+- `InputHandler` - чтение команд пользователя
+- `MenuPrinter` - вывод меню и сообщений
+- `DefaultTaskRegistry` - базовая реализация реестра задач
+
+## Текущее состояние
+Сейчас в проекте реализован базовый каркас приложения:
+- модульная архитектура
+- консольное меню
+- реестр задач
+- первая задача `CodeRunDecodeStringTask`
+- unit-тесты для декодирования строки
+
+## Планы по развитию
+- добавить задачи из `Yandex Algorithm training 2026` и `CodeRun`
+- сгруппировать задачи по источникам и темам
+- расширить карточку задачи
+- добавить больше тестов для решений
 
