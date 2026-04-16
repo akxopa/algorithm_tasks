@@ -2,6 +2,7 @@ package io.github.akxopa.tasks.registry;
 
 import io.github.akxopa.common.Task;
 import io.github.akxopa.common.registry.TaskRegistry;
+import io.github.akxopa.tasks.yatraining.FunnySequenceTask;
 import io.github.akxopa.tasks.yatraining.YaTrainingDecodeStringTask;
 
 import java.util.List;
@@ -12,7 +13,9 @@ import java.util.Optional;
  */
 public class DefaultTaskRegistry implements TaskRegistry {
     private final List<Task> tasks = List.of(
-            new YaTrainingDecodeStringTask());
+            new YaTrainingDecodeStringTask(),
+            new FunnySequenceTask()
+            );
 
     /**
      * Returns all registered tasks.
