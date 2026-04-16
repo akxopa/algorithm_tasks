@@ -5,11 +5,11 @@ import io.github.akxopa.common.model.TaskInfo;
 
 /**
  * Demonstration task that decodes a string in the
- * Yandex Algorithm training 2026 format.
+ * Yandex Algorithm training 2026 format, warmup section.
  */
 public class YaTrainingDecodeStringTask implements Task {
     private static final TaskInfo INFO = new TaskInfo(
-            "yandex-001",
+            "yandex-warmup",
             "Yandex Algorithm training 2026",
             "Decode the string",
             "Раскодируй строку:\n" + //
@@ -75,7 +75,7 @@ public class YaTrainingDecodeStringTask implements Task {
     /**
      * Converts a numeric token to the corresponding lowercase Latin letter.
      *
-     * @param digitString one-digit or two-digit numeric token
+     * @param num one-digit or two-digit numeric token
      * @return decoded character
      */
     private char toChar(int num) {
