@@ -30,7 +30,8 @@ public class FunnySequenceTask implements Task {
                     "Вывод:\n" + //
                     "5",
             "5\nahaha",
-            "5");
+            "5",
+            "O(n)");
 
     @Override
     public TaskInfo getInfo() {

@@ -37,6 +37,7 @@ public class MenuPrinter {
         System.out.println(info.title());
         System.out.println("Источник: " + info.source());
         System.out.println("ID: " + info.id());
+        System.out.println("Оценка сложности: " + info.complexity());
         System.out.println();
         System.out.println(info.description());
         System.out.println();
