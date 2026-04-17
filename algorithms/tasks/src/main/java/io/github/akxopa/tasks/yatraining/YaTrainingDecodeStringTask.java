@@ -27,7 +27,8 @@ public class YaTrainingDecodeStringTask implements Task {
                     "Вывод\n" + //
                     "helloworld",
             "8512#12#15#23#15#18#12#4",
-            "helloworld");
+            "helloworld",
+            "O(n)");
 
     @Override
     public TaskInfo getInfo() {

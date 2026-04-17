@@ -3,9 +3,7 @@ package io.github.akxopa.tasks.yatraining;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-
 import io.github.akxopa.tasks.yatraining.YaTrainingDecodeStringTask;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.DisplayName;
